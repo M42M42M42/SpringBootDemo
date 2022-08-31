@@ -3,7 +3,10 @@ package com.example.demo.service;
 import com.example.demo.controller.request.EmployeeReq;
 import com.example.demo.controller.responce.EmployeeResp;
 import com.example.demo.entity.Employee;
+import com.example.demo.exception.EmployeeNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                 return employee;
             }
         }
-        return null;
+        throw new EmployeeNotFoundException("Employee is not found for id " + id);
     }
 
     @Override
