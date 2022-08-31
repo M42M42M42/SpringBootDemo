@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class DemoController {
     @Autowired
@@ -32,5 +34,10 @@ public class DemoController {
     @GetMapping("employees/{id}")
     public Employee getEmployeeById(@PathVariable(name = "id") Long employeeId) {
         return employeeService.findById(employeeId);
+    }
+
+    @GetMapping("employees")
+    public List<Employee> getEmployeesByGender(@RequestParam(value = "gender") String gender) {
+        return employeeService.findByGender(gender);
     }
 }
