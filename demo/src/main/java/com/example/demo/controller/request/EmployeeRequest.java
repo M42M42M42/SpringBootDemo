@@ -6,8 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class EmployeeReq {
+public class EmployeeRequest {
     private Long id;
     private String name;
     private String gender;

@@ -1,15 +1,15 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.request.EmployeeReq;
-import com.example.demo.controller.responce.EmployeeResp;
+import com.example.demo.controller.request.EmployeeRequest;
+import com.example.demo.controller.responce.EmployeeResponse;
 import com.example.demo.entity.Employee;
 
 import java.util.List;
 
 public interface EmployeeService {
-    EmployeeResp all();
+    EmployeeResponse all();
 
-    boolean add(EmployeeReq req);
+    boolean add(EmployeeRequest req);
 
     Employee findById(Long id);
 

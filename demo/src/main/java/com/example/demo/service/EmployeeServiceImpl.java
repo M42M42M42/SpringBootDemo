@@ -1,12 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.request.EmployeeReq;
-import com.example.demo.controller.responce.EmployeeResp;
+import com.example.demo.controller.request.EmployeeRequest;
+import com.example.demo.controller.responce.EmployeeResponse;
 import com.example.demo.entity.Employee;
 import com.example.demo.exception.EmployeeNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +22,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public EmployeeResp all() {
-        return EmployeeResp.builder().employees(employees).size(employees.size()).build();
+    public EmployeeResponse all() {
+        return EmployeeResponse.builder().employees(employees).size(employees.size()).build();
     }
 
     @Override
-    public boolean add(EmployeeReq req) {
+    public boolean add(EmployeeRequest req) {
         Employee newEmployee = Employee.builder().id(req.getId()).name(req.getName()).gender(req.getGender()).build();
         employees.add(newEmployee);
         return true;
@@ -37,12 +35,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee findById(Long id) {
-        for (Employee employee : employees) {
-            if (employee.getId() == id) {
-                return employee;
-            }
-        }
-        throw new EmployeeNotFoundException("Employee is not found for id " + id);
+        return this.employees.stream().filter(employee -> employee.getId() == id).findFirst().orElseThrow(
+                () -> new EmployeeNotFoundException("Employee is not found for id " + id)
+        );
     }
 
     @Override

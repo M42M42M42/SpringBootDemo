@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.controller.request.EmployeeReq;
-import com.example.demo.controller.responce.EmployeeResp;
+import com.example.demo.controller.request.EmployeeRequest;
+import com.example.demo.controller.responce.EmployeeResponse;
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ public class DemoController {
     private EmployeeService employeeService;
 
     @GetMapping("/all")
-    public EmployeeResp all() {
+    public EmployeeResponse all() {
         return employeeService.all();
     }
 
     @PostMapping("/addition")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public boolean add(@RequestBody EmployeeReq req) {
+    public boolean add(@RequestBody EmployeeRequest req) {
         return employeeService.add(req);
     }
 

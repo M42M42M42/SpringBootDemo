@@ -9,8 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class EmployeeResp {
+public class EmployeeResponse {
     private List<Employee> employees;
     private int size;
 }
